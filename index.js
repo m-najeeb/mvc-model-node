@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const { connectMongoDB } = require("./connection");
 const productsRoute = require("./routes/ProductsRoute");
+const usersRoute = require("./routes/UsersRoute");
 
 const app = express();
 
@@ -18,6 +19,7 @@ connectMongoDB(process.env.MONGO_URL)
 
 // Routes
 app.use("/products", productsRoute);
+app.use("/users", usersRoute);
 
 // Start the server
 const PORT = process.env.PORT || 5000;
