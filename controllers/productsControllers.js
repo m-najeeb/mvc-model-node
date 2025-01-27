@@ -2,7 +2,10 @@ const Product = require("../models/Product");
 
 async function getAllProducts(req, res) {
   try {
-    const allProducts = await Product.find({});
+    const allProducts = await Product.find({
+      $and: [{ price: { $ne: 70000 } }, { price: { $gte: 36000 } }], //Logical Query
+    });
+
     return res.status(200).json({
       status: "success",
       data: allProducts,
